@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: 02-create-users-table
+      author: smartlogix
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nombre
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: apellido
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rut
+                  type: VARCHAR(12)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: email
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fecha_nacimiento
+                  type: DATE
+              - column:
+                  name: direccion
+                  type: VARCHAR(255)
+              - column:
+                  name: fecha_registro
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_users_roles
+                    references: roles(id)

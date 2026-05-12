@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03-seed-roles
+      author: smartlogix
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: nombre
+                  value: "ADMIN"
+              - column:
+                  name: descripcion
+                  value: "Administrador del sistema con acceso completo"
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: nombre
+                  value: "CLIENTE"
+              - column:
+                  name: descripcion
+                  value: "Cliente registrado con acceso a compras y pedidos"
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: nombre
+                  value: "VENDEDOR"
+              - column:
+                  name: descripcion
+                  value: "Vendedor con acceso a gestión de productos y pedidos"

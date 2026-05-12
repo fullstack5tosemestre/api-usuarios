@@ -1,0 +1,149 @@
+databaseChangeLog:
+  - changeSet:
+      id: 04-seed-users
+      author: smartlogix
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Carlos"}
+              - column: {name: apellido, value: "González"}
+              - column: {name: rut, value: "12345678-9"}
+              - column: {name: email, value: "carlos.gonzalez@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword1"}
+              - column: {name: fecha_nacimiento, value: "1990-03-15"}
+              - column: {name: direccion, value: "Av. Providencia 1234, Santiago"}
+              - column: {name: fecha_registro, valueDate: "2024-01-10T10:00:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "María"}
+              - column: {name: apellido, value: "López"}
+              - column: {name: rut, value: "9876543-2"}
+              - column: {name: email, value: "maria.lopez@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword2"}
+              - column: {name: fecha_nacimiento, value: "1985-07-22"}
+              - column: {name: direccion, value: "Calle Las Condes 456, Santiago"}
+              - column: {name: fecha_registro, valueDate: "2024-01-15T09:30:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Pedro"}
+              - column: {name: apellido, value: "Martínez"}
+              - column: {name: rut, value: "15234567-K"}
+              - column: {name: email, value: "pedro.martinez@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword3"}
+              - column: {name: fecha_nacimiento, value: "1992-11-08"}
+              - column: {name: direccion, value: "Av. Libertador 789, Valparaíso"}
+              - column: {name: fecha_registro, valueDate: "2024-02-01T14:00:00"}
+              - column: {name: role_id, valueNumeric: 3}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Ana"}
+              - column: {name: apellido, value: "Torres"}
+              - column: {name: rut, value: "18765432-1"}
+              - column: {name: email, value: "ana.torres@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword4"}
+              - column: {name: fecha_nacimiento, value: "1995-04-30"}
+              - column: {name: direccion, value: "Pasaje Los Aromos 12, Concepción"}
+              - column: {name: fecha_registro, valueDate: "2024-02-10T08:45:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Diego"}
+              - column: {name: apellido, value: "Ramírez"}
+              - column: {name: rut, value: "16543219-5"}
+              - column: {name: email, value: "diego.ramirez@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword5"}
+              - column: {name: fecha_nacimiento, value: "1988-09-14"}
+              - column: {name: direccion, value: "Av. O'Higgins 321, Temuco"}
+              - column: {name: fecha_registro, valueDate: "2024-02-20T11:15:00"}
+              - column: {name: role_id, valueNumeric: 1}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Valentina"}
+              - column: {name: apellido, value: "Soto"}
+              - column: {name: rut, value: "19876541-3"}
+              - column: {name: email, value: "valentina.soto@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword6"}
+              - column: {name: fecha_nacimiento, value: "1997-12-01"}
+              - column: {name: direccion, value: "Calle Maipú 654, La Serena"}
+              - column: {name: fecha_registro, valueDate: "2024-03-05T16:00:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Javier"}
+              - column: {name: apellido, value: "Herrera"}
+              - column: {name: rut, value: "13456789-0"}
+              - column: {name: email, value: "javier.herrera@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword7"}
+              - column: {name: fecha_nacimiento, value: "1983-06-18"}
+              - column: {name: direccion, value: "Av. España 987, Rancagua"}
+              - column: {name: fecha_registro, valueDate: "2024-03-12T10:30:00"}
+              - column: {name: role_id, valueNumeric: 3}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Camila"}
+              - column: {name: apellido, value: "Flores"}
+              - column: {name: rut, value: "20123456-7"}
+              - column: {name: email, value: "camila.flores@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword8"}
+              - column: {name: fecha_nacimiento, value: "2000-02-28"}
+              - column: {name: direccion, value: "Pasaje Bellavista 45, Antofagasta"}
+              - column: {name: fecha_registro, valueDate: "2024-04-01T09:00:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Felipe"}
+              - column: {name: apellido, value: "Morales"}
+              - column: {name: rut, value: "17890123-4"}
+              - column: {name: email, value: "felipe.morales@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword9"}
+              - column: {name: fecha_nacimiento, value: "1991-10-05"}
+              - column: {name: direccion, value: "Av. Colón 222, Arica"}
+              - column: {name: fecha_registro, valueDate: "2024-04-15T13:45:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Sofía"}
+              - column: {name: apellido, value: "Vargas"}
+              - column: {name: rut, value: "21234567-8"}
+              - column: {name: email, value: "sofia.vargas@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword10"}
+              - column: {name: fecha_nacimiento, value: "1999-08-12"}
+              - column: {name: direccion, value: "Calle Serrano 78, Iquique"}
+              - column: {name: fecha_registro, valueDate: "2024-05-02T15:20:00"}
+              - column: {name: role_id, valueNumeric: 2}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Roberto"}
+              - column: {name: apellido, value: "Núñez"}
+              - column: {name: rut, value: "11234567-6"}
+              - column: {name: email, value: "roberto.nunez@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword11"}
+              - column: {name: fecha_nacimiento, value: "1979-05-20"}
+              - column: {name: direccion, value: "Av. Recoleta 1500, Santiago"}
+              - column: {name: fecha_registro, valueDate: "2024-05-10T08:00:00"}
+              - column: {name: role_id, valueNumeric: 3}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: nombre, value: "Daniela"}
+              - column: {name: apellido, value: "Castro"}
+              - column: {name: rut, value: "14678901-2"}
+              - column: {name: email, value: "daniela.castro@smartlogix.cl"}
+              - column: {name: password, value: "$2a$10$hashedpassword12"}
+              - column: {name: fecha_nacimiento, value: "1993-01-17"}
+              - column: {name: direccion, value: "Pasaje Las Rosas 99, Viña del Mar"}
+              - column: {name: fecha_registro, valueDate: "2024-06-01T12:00:00"}
+              - column: {name: role_id, valueNumeric: 2}

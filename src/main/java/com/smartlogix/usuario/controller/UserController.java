@@ -1,5 +1,7 @@
 package com.smartlogix.usuario.controller;
 
+import com.smartlogix.usuario.dto.OrderDTO;
+import com.smartlogix.usuario.dto.ProductDTO;
 import com.smartlogix.usuario.model.User;
 import com.smartlogix.usuario.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,15 @@ import java.util.Optional;
  * Controlador REST para la gestión de usuarios.
  * Patrón de diseño: MVC Controller.
  *
- * Endpoints disponibles:
+ * Endpoints:
  *   GET    /api/v1/usuarios              → todos los usuarios
  *   GET    /api/v1/usuarios/{id}         → usuario por ID
  *   GET    /api/v1/usuarios/by-rut/{rut} → usuario por RUT
- *   GET    /api/v1/usuarios/by-email     → usuario por email (?email=...)
- *   GET    /api/v1/usuarios/buscar       → búsqueda por nombre/apellido (?q=...)
- *   GET    /api/v1/usuarios/{id}/pedidos → pedidos del usuario (inter-servicio)
- *   POST   /api/v1/usuarios              → crear usuario
+ *   GET    /api/v1/usuarios/by-email     → usuario por email
+ *   GET    /api/v1/usuarios/buscar       → búsqueda por nombre/apellido
+ *   GET    /api/v1/usuarios/{id}/pedidos → pedidos del usuario (→ api-pedidos)
+ *   GET    /api/v1/usuarios/catalogo     → productos disponibles (→ api-inventario)
+ *   POST   /api/v1/usuarios              → registrar usuario
  *   PUT    /api/v1/usuarios/{id}         → actualizar usuario
  *   DELETE /api/v1/usuarios/{id}         → eliminar cuenta
  */
@@ -74,6 +77,33 @@ public class UserController {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
+    /**
+     * Obtiene los pedidos asociados al usuario.
+     * Comunicación inter-servicio → api-pedidos.
+     */
+    @GetMapping("/{id}/pedidos")
+    public ResponseEntity<List<OrderDTO>> getPedidosByUser(@PathVariable Long id) {
+        try {
+            List<OrderDTO> pedidos = userService.getOrdersByUser(id);
+            return new ResponseEntity<>(pedidos, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Obtiene el catálogo de productos disponibles para el usuario.
+     * Comunicación inter-servicio → api-inventario.
+     */
+    @GetMapping("/catalogo")
+    public ResponseEntity<List<ProductDTO>> getCatalogo() {
+        List<ProductDTO> productos = userService.getCatalogo();
+        if (productos.isEmpty()) {
+            return new ResponseEntity<>(productos, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(productos, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
         User saved = userService.save(user);
@@ -96,21 +126,6 @@ public class UserController {
         try {
             userService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    /**
-     * Obtiene los pedidos asociados al usuario.
-     * Comunicación inter-servicio: llama a api-pedidos.
-     * Se implementa en UserService tras agregar RestTemplate (commit 5).
-     */
-    @GetMapping("/{id}/pedidos")
-    public ResponseEntity<?> getPedidosByUser(@PathVariable Long id) {
-        try {
-            var pedidos = userService.getOrdersByUser(id);
-            return new ResponseEntity<>(pedidos, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

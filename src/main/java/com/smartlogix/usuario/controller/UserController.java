@@ -17,19 +17,19 @@ import java.util.Optional;
  * Patrón de diseño: MVC Controller.
  *
  * Endpoints:
- *   GET    /api/v1/usuarios              → todos los usuarios
- *   GET    /api/v1/usuarios/{id}         → usuario por ID
- *   GET    /api/v1/usuarios/by-rut/{rut} → usuario por RUT
- *   GET    /api/v1/usuarios/by-email     → usuario por email
- *   GET    /api/v1/usuarios/buscar       → búsqueda por nombre/apellido
- *   GET    /api/v1/usuarios/{id}/pedidos → pedidos del usuario (→ api-pedidos)
- *   GET    /api/v1/usuarios/catalogo     → productos disponibles (→ api-inventario)
- *   POST   /api/v1/usuarios              → registrar usuario
- *   PUT    /api/v1/usuarios/{id}         → actualizar usuario
- *   DELETE /api/v1/usuarios/{id}         → eliminar cuenta
+ * GET /api/v1/usuarios → todos los usuarios
+ * GET /api/v1/usuarios/{id} → usuario por ID
+ * GET /api/v1/usuarios/by-rut/{rut} → usuario por RUT
+ * GET /api/v1/usuarios/by-email → usuario por email
+ * GET /api/v1/usuarios/buscar → búsqueda por nombre/apellido
+ * GET /api/v1/usuarios/{id}/pedidos → pedidos del usuario (→ api-pedidos)
+ * GET /api/v1/usuarios/catalogo → productos disponibles (→ api-inventario)
+ * POST /api/v1/usuarios → registrar usuario
+ * PUT /api/v1/usuarios/{id} → actualizar usuario
+ * DELETE /api/v1/usuarios/{id} → eliminar cuenta
  */
 @RestController
-@RequestMapping("api/v1/usuarios")
+@RequestMapping("api/v1/users")
 public class UserController {
 
     @Autowired

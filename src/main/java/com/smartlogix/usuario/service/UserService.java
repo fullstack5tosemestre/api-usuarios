@@ -24,8 +24,8 @@ import java.util.Optional;
  * y la comunicación con otros microservicios (api-pedidos, api-inventario).
  *
  * Comunicación inter-servicios:
- *   - api-pedidos  → pedidos asociados al nombre del usuario
- *   - api-inventario → catálogo de productos disponibles
+ * - api-pedidos → pedidos asociados al nombre del usuario
+ * - api-inventario → catálogo de productos disponibles
  */
 @Service
 @Transactional
@@ -37,10 +37,10 @@ public class UserService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${pedidos.api.base-url}")
+    @Value("${gateway.api.url}/api/v1/orders")
     private String pedidosApiUrl;
 
-    @Value("${inventario.api.base-url}")
+    @Value("${gateway.api.url}/api/v1/products")
     private String inventarioApiUrl;
 
     // ===================== CRUD =====================
@@ -106,11 +106,12 @@ public class UserService {
                     pedidosApiUrl,
                     HttpMethod.GET,
                     null,
-                    new ParameterizedTypeReference<List<OrderDTO>>() {}
-            );
+                    new ParameterizedTypeReference<List<OrderDTO>>() {
+                    });
 
             List<OrderDTO> allOrders = response.getBody();
-            if (allOrders == null) return Collections.emptyList();
+            if (allOrders == null)
+                return Collections.emptyList();
 
             // Filtrar por customerName del usuario
             return allOrders.stream()
@@ -133,8 +134,8 @@ public class UserService {
                     inventarioApiUrl,
                     HttpMethod.GET,
                     null,
-                    new ParameterizedTypeReference<List<ProductDTO>>() {}
-            );
+                    new ParameterizedTypeReference<List<ProductDTO>>() {
+                    });
             return response.getBody() == null ? Collections.emptyList() : response.getBody();
         } catch (Exception e) {
             return Collections.emptyList();

@@ -36,8 +36,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t api-usuarios:latest .
-          docker tag api-usuarios:latest ${{ secrets.ECR_REPO_URL_API_USUARIOS }}:latest
+          docker build -t usuarios:latest .
+          docker tag usuarios:latest ${{ secrets.ECR_REPO_URL_API_USUARIOS }}:latest
 
       - name: Push image to ECR
         run: |
@@ -58,11 +58,13 @@ jobs:
           ec2-user@${{ secrets.EC2_API_USUARIOS_PRIVATE_IP }} \
           'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 089485767547.dkr.ecr.us-east-1.amazonaws.com && \
           docker pull ${{ secrets.ECR_REPO_URL_API_USUARIOS }}:latest && \
-          docker rm -f usuario || true && \
+          docker rm -f usuarios || true && \
           docker run -d \
-          -e SPRING_DATASOURCE_URL=${{ secrets.EC2_DB_PRIVATE_IP }}:3306/db_usuario \
+          -p 8081:8081 \
+          -e GATEWAY_API_URL=http://${{ secrets.GATEWAY_API_URL }} \
+          -e SPRING_DATASOURCE_URL=jdbc:mysql://${{ secrets.EC2_DB_PRIVATE_IP }}:3306/db_usuarios \
           -e SPRING_DATASOURCE_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
-          --name usuario \
+          --name usuarios \
           --restart unless-stopped \
           ${{ secrets.ECR_REPO_URL_API_USUARIOS }}:latest \
           && docker image prune -af'"

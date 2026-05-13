@@ -36,8 +36,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t api-usuario:latest .
-          docker tag api-usuario:latest ${{ secrets.ECR_REPO_URL_API_USUARIOS }}:latest
+          docker build -t api-usuarios:latest .
+          docker tag api-usuarios:latest ${{ secrets.ECR_REPO_URL_API_USUARIOS }}:latest
 
       - name: Push image to ECR
         run: |

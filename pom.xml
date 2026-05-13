@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.smartlogix</groupId>
-    <artifactId>usuario</artifactId>
+    <artifactId>usuarios</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>usuario</name>
+    <name>usuarios</name>
     <description>API REST de Usuarios - SmartLogix</description>
 
     <properties>
@@ -87,6 +87,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>usuario</finalName>
+        <finalName>usuarios</finalName>
     </build>
 </project>
